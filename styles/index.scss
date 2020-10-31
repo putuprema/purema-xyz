@@ -1,0 +1,15 @@
+@import "variables";
+@import "font";
+@import "color";
+
+.box-shadow {
+  box-shadow: $box-shadow;
+}
+
+body {
+  background-color: white !important;
+
+  &.navbar-expanded {
+    overflow: hidden;
+  }
+}

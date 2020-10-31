@@ -1,0 +1,56 @@
+@import "../../styles/variables";
+
+.root {
+  display: flex;
+  align-items: center;
+
+  a {
+    transition: color 0.3s ease-in-out;
+    margin-right: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-secondary !important;
+    }
+  }
+
+  &.font-large {
+    a {
+      font-size: 2.5rem;
+    }
+  }
+
+  &.font-small {
+    a {
+      font-size: 1.75rem;
+    }
+  }
+
+  &.color-primary {
+    a {
+      color: $color-primary;
+    }
+  }
+
+  &.color-secondary {
+    a {
+      color: $color-secondary;
+    }
+  }
+
+  &.color-black {
+    a {
+      color: $color-black;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .root {
+    justify-content: center;
+  }
+}

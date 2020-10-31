@@ -1,0 +1,36 @@
+@import "../../../../styles/variables";
+
+.item {
+  border-radius: 30px;
+  box-shadow: $box-shadow-short;
+  margin-top: 1.5rem;
+
+  .thumb {
+    width: 100%;
+    height: 220px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .details {
+    padding: 2rem 1.5rem;
+
+    .name {
+      margin-bottom: 0;
+    }
+
+    .category {
+      margin-bottom: 1.25rem;
+      font-weight: $font-weight-semibold;
+    }
+
+    .cta-container {
+      margin-top: 1.25rem;
+      display: grid;
+      row-gap: 0.6rem;
+    }
+  }
+}

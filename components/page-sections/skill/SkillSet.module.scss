@@ -1,0 +1,34 @@
+@import "../../../styles/variables";
+
+.skill-set {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  padding: 0.8rem;
+  background-color: white;
+  box-shadow: $box-shadow;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  &__selected {
+    @extend .skill-set;
+    box-shadow: $box-shadow-bold;
+    border-color: $color-primary;
+  }
+
+  &:hover {
+    box-shadow: $box-shadow-bold;
+    border-color: $color-primary;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .skill-set {
+    width: 70px;
+    height: 70px;
+  }
+}

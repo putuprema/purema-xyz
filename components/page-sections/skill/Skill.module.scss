@@ -1,0 +1,29 @@
+@import "../../../styles/variables";
+
+.main-content {
+  margin-top: 4rem;
+  display: grid;
+  row-gap: 2rem;
+  column-gap: 2rem;
+
+  .skill-set-container {
+    display: grid;
+    column-gap: 1rem;
+    row-gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .main-content {
+    .skill-set-container {
+      justify-self: center;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .main-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

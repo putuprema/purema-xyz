@@ -1,0 +1,29 @@
+@import "../../../../styles/variables";
+
+.project-thumbs-container {
+  max-height: 800px;
+  overflow-y: hidden;
+  position: relative;
+  z-index: 2;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 100%);
+  }
+
+  .project-thumbs-container-inner {
+    max-width: 600px;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition-property: transform;
+    will-change: transform;
+    transition: transform 0.5s ease-in-out;
+  }
+}

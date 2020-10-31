@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+
+.page-header::after {
+  content: "";
+  display: block;
+  width: 150px;
+  padding-top: 0.8rem;
+  border-bottom: 8px solid $color-primary;
+}

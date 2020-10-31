@@ -1,0 +1,29 @@
+@import "../../styles/variables";
+
+.root {
+  border-radius: 25px;
+  background-color: white;
+  box-shadow: $box-shadow;
+  transition: box-shadow 0.3s ease-in-out;
+  padding: 1.5rem;
+  border: 0;
+  outline: none;
+  margin-bottom: 1rem;
+  font-family: "Nunito";
+  font-size: 1rem;
+
+  &__fullWidth {
+    @extend .root;
+    width: 100%;
+  }
+
+  &:focus {
+    box-shadow: $box-shadow-bold;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .root {
+    padding: 1.25rem 1.5rem;
+  }
+}

@@ -1,0 +1,67 @@
+@import "../../../styles/variables";
+
+.main-container {
+  position: relative;
+  z-index: 2;
+
+  .main-content {
+    .paragraph-content {
+      max-width: 500px;
+    }
+  }
+}
+
+.self-photo-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  img {
+    padding-top: 200px;
+    position: absolute;
+    right: 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .main-container {
+    .main-content {
+      .paragraph-content {
+        max-width: 400px;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .self-photo-container {
+    display: none;
+  }
+
+  .main-container {
+    display: grid;
+    row-gap: 2rem;
+    justify-items: center;
+
+    .me-in-a-circle {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: $box-shadow;
+    }
+
+    .main-content {
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .main-container {
+    .me-in-a-circle {
+      display: none;
+    }
+  }
+}
