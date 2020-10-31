@@ -66,7 +66,7 @@ const Navbar: React.FC = ({ children }) => {
         onClick={() => setMenuOpen(!menuOpen)}
       ></div>
       <nav className={`${styles["navbar"]} ${opaque ? styles["opaque"] : ""}`} ref={navRef}>
-        <div className={`${styles["nav-content"]} ${containerStyles["container"]} `}>
+        <div className={`${styles["nav-content"]} ${containerStyles["root"]} `}>
           <div className={`${styles["nav-logo-container"]}`} ref={navLogoRef}>
             <div>
               <Typography variant="h4" style={{ lineHeight: 0 }}>

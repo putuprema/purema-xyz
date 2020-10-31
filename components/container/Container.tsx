@@ -1,18 +1,21 @@
 import React from "react";
 import styles from "./Container.module.scss";
 
-// const Container: React.FC<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> = ({ children, ...props }) => {
-//   return (
-//     <div {...props} className={`${styles["container"]} ${props.className}`}>
-//       {children}
-//     </div>
-//   );
-// };
+interface ContainerProps {
+  compact?: boolean;
+}
 
-const Container = React.forwardRef<HTMLDivElement, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>>((props, ref) => (
-  <div ref={ref} {...props} className={`${styles["container"]} ${props.className}`}>
+type Props = ContainerProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+const Container = React.forwardRef<HTMLDivElement, Props>((props, ref) => (
+  <div ref={ref} {...props} className={`${styles[props.compact ? "root__compact" : "root"]} ${props.className}`}>
     {props.children}
   </div>
 ));
+
+Container.defaultProps = {
+  compact: false,
+  className: "",
+};
 
 export default Container;
