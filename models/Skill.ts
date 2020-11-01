@@ -1,8 +1,8 @@
 export class Skill {
   id: string = "";
-  name;
-  description;
-  icon;
+  name: string;
+  description: string;
+  icon: string;
 
   constructor(name: string, description: string, icon: string) {
     this.name = name;

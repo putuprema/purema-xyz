@@ -1,11 +1,16 @@
 import firebase from "firebase/app";
 import { Project, ProjectForm } from "models/Project";
-import FileService from "./file.service";
 import slug from "limax";
+import { ProjectService } from "./interface";
+import { FileService } from "services/file/interface";
 
-class ProjectService {
-  private db: firebase.firestore.Firestore;
-  private fileService: FileService;
+/**
+ * Handles projects data fetching and manipulation.
+ * For use by frontend components only.
+ */
+class ProjectServiceFrontendImpl implements ProjectService {
+  private readonly db: firebase.firestore.Firestore;
+  private readonly fileService: FileService;
   private projects: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
 
   constructor(db: firebase.firestore.Firestore, fileService: FileService) {
@@ -30,10 +35,6 @@ class ProjectService {
     });
   }
 
-  /**
-   * Add new project
-   * @param form `ProjectForm`
-   */
   async add(form: ProjectForm) {
     const { name, category, description, demoUrl, githubUrl, thumbnailFile, youtubeEmbedUrl } = form;
 
@@ -54,19 +55,12 @@ class ProjectService {
     await this.projects.add(new Project(name, category, description, downloadURL, demoUrl, githubUrl, youtubeEmbedUrl));
   }
 
-  /**
-   * Get all projects
-   */
   async getAll(): Promise<Project[]> {
     // const result = await this.projects.orderBy("name", "asc").orderBy("category", "asc").limit(12).get();
-    const result = await this.projects.orderBy("name", "asc").limit(12).get();
+    const result = await this.projects.orderBy("name", "asc").orderBy("category", "asc").limit(12).get();
     return result.docs.map((p) => p.data() as Project);
   }
 
-  /**
-   * Get project by id
-   * @param id Project id
-   */
   async get(id: string): Promise<Project> {
     const result = await this.projects.doc(id).get();
     if (!result.exists) {
@@ -76,11 +70,6 @@ class ProjectService {
     return result.data() as Project;
   }
 
-  /**
-   * Update project
-   * @param id Project id
-   * @param form `ProjectForm`
-   */
   async update(id: string, form: ProjectForm) {
     const { name, category, description, demoUrl, githubUrl, thumbnailFile, youtubeEmbedUrl } = form;
 
@@ -102,10 +91,6 @@ class ProjectService {
     await this.projects.doc(id).set(project);
   }
 
-  /**
-   * Delete project
-   * @param id Project id
-   */
   async delete(id: string) {
     const project = await this.get(id);
 
@@ -116,4 +101,4 @@ class ProjectService {
   }
 }
 
-export default ProjectService;
+export default ProjectServiceFrontendImpl;

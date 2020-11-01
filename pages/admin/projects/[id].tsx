@@ -1,5 +1,5 @@
-import { GetServerSideProps, NextPage } from "next";
-import { bootstrapServices, Services } from "services";
+import { GetServerSidePropsResult, NextPage } from "next";
+import { ServiceContext } from "services/frontend";
 import styles from "components/admin/AdminPage.module.scss";
 import Head from "next/head";
 import Container from "components/container/Container";
@@ -9,13 +9,15 @@ import Snackbar from "components/Snackbar";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { Project } from "models/Project";
+import { bootstrapBackendServices } from "services/backend";
+import { getServerSidePropsWithAuth } from "helpers/getServerSidePropsWithAuth";
 
 interface PageProps {
   project: Project;
 }
 
 const EditProjectPage: NextPage<PageProps> = ({ project }) => {
-  const { projectService } = useContext(Services);
+  const { projectService } = useContext(ServiceContext);
   const router = useRouter();
 
   const [editLoading, setEditLoading] = useState(false);
@@ -161,15 +163,17 @@ const EditProjectPage: NextPage<PageProps> = ({ project }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const { projectService } = bootstrapServices();
-  const { id } = ctx.params!;
+export const getServerSideProps = getServerSidePropsWithAuth(
+  async (ctx): Promise<GetServerSidePropsResult<PageProps>> => {
+    const { projectService } = bootstrapBackendServices();
+    const { id } = ctx.params!;
 
-  return {
-    props: {
-      project: await projectService.get(id as string),
-    },
-  };
-};
+    return {
+      props: {
+        project: await projectService.get(id as string),
+      },
+    };
+  }
+);
 
 export default EditProjectPage;

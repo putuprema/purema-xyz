@@ -1,13 +1,14 @@
 import Container from "components/container/Container";
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { GetServerSidePropsResult, NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import styles from "components/admin/AdminPage.module.scss";
 import { Skill } from "models/Skill";
 import { Project } from "models/Project";
-import { bootstrapServices } from "services";
+import { bootstrapBackendServices } from "services/backend";
 import SkillList from "components/admin/dashboard/SkillList";
 import ProjectList from "components/admin/dashboard/ProjectList";
+import { getServerSidePropsWithAuth } from "helpers/getServerSidePropsWithAuth";
 
 interface PageProps {
   skills: Skill[];
@@ -28,18 +29,20 @@ const AdminIndexPage: NextPage<PageProps> = ({ skills, projects }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const { skillService, projectService } = bootstrapServices();
+export const getServerSideProps = getServerSidePropsWithAuth(
+  async (ctx): Promise<GetServerSidePropsResult<PageProps>> => {
+    const { skillService, projectService } = bootstrapBackendServices();
 
-  const skills = await skillService.getAll();
-  const projects = await projectService.getAll();
+    const skills = await skillService.getAll();
+    const projects = await projectService.getAll();
 
-  return {
-    props: {
-      skills,
-      projects,
-    },
-  };
-};
+    return {
+      props: {
+        skills,
+        projects,
+      },
+    };
+  }
+);
 
 export default AdminIndexPage;

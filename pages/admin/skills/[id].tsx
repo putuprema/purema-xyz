@@ -1,6 +1,6 @@
 import { Skill } from "models/Skill";
-import { GetServerSideProps, NextPage } from "next";
-import { bootstrapServices, Services } from "services";
+import { GetServerSidePropsResult, NextPage } from "next";
+import { ServiceContext } from "services/frontend";
 import styles from "components/admin/AdminPage.module.scss";
 import Head from "next/head";
 import Container from "components/container/Container";
@@ -9,13 +9,15 @@ import { Button } from "components/Button";
 import Snackbar from "components/Snackbar";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/router";
+import { bootstrapBackendServices } from "services/backend";
+import { getServerSidePropsWithAuth } from "helpers/getServerSidePropsWithAuth";
 
 interface PageProps {
   skill: Skill;
 }
 
 const EditSkillPage: NextPage<PageProps> = ({ skill }) => {
-  const { skillService } = useContext(Services);
+  const { skillService } = useContext(ServiceContext);
   const router = useRouter();
 
   const [editLoading, setEditLoading] = useState(false);
@@ -126,15 +128,17 @@ const EditSkillPage: NextPage<PageProps> = ({ skill }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const { skillService } = bootstrapServices();
-  const { id } = ctx.params!;
+export const getServerSideProps = getServerSidePropsWithAuth(
+  async (ctx): Promise<GetServerSidePropsResult<PageProps>> => {
+    const { skillService } = bootstrapBackendServices();
+    const { id } = ctx.params!;
 
-  return {
-    props: {
-      skill: await skillService.get(id as string),
-    },
-  };
-};
+    return {
+      props: {
+        skill: await skillService.get(id as string),
+      },
+    };
+  }
+);
 
 export default EditSkillPage;

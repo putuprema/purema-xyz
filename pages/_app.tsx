@@ -4,13 +4,12 @@ import App from "next/app";
 import "../styles/index.scss";
 import Head from "next/head";
 import { ViewportContext, ViewportContextInterface } from "misc/viewport";
-import { bootstrapServices, ServicesContextInterface } from "services";
-import { Services } from "services";
+import { ServiceProvider } from "services/frontend";
 import ProgressBarIndicator from "components/ProgressBarIndicator";
+import { AuthProvider } from "misc/auth";
 
 interface AppState {
   viewport: ViewportContextInterface;
-  services: ServicesContextInterface;
 }
 
 class PuremaApp extends App<{}, {}, AppState> {
@@ -20,7 +19,6 @@ class PuremaApp extends App<{}, {}, AppState> {
       isTablet: false,
       isMobile: false,
     },
-    services: bootstrapServices(),
   };
 
   handleResize = () => {
@@ -55,12 +53,14 @@ class PuremaApp extends App<{}, {}, AppState> {
         </Head>
         <CssBaseline />
         <ViewportContext.Provider value={this.state.viewport}>
-          <Services.Provider value={this.state.services}>
-            <ThemeProvider theme={Theme}>
-              <ProgressBarIndicator />
-              <Component {...pageProps} />
-            </ThemeProvider>
-          </Services.Provider>
+          <AuthProvider>
+            <ServiceProvider>
+              <ThemeProvider theme={Theme}>
+                <ProgressBarIndicator />
+                <Component {...pageProps} />
+              </ThemeProvider>
+            </ServiceProvider>
+          </AuthProvider>
         </ViewportContext.Provider>
       </>
     );

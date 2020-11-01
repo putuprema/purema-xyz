@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import styles from "./SkillItem.module.scss";
 
-const SkillItem: React.FC<Skill> = ({ id, name, description, icon }) => {
+const SkillItem: React.FC<Skill> = ({ id, name, icon }) => {
   const router = useRouter();
 
   const onEditBtnClicked = () => {

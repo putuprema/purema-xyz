@@ -1,11 +1,16 @@
 import firebase from "firebase/app";
 import { Skill, SkillForm } from "models/Skill";
-import FileService from "./file.service";
 import slug from "limax";
+import { SkillService } from "./interface";
+import { FileService } from "services/file/interface";
 
-class SkillService {
-  private db: firebase.firestore.Firestore;
-  private fileService: FileService;
+/**
+ * Handles skill data fetching and manipulation.
+ * For use by frontend components only.
+ */
+class SkillServiceFrontendImpl implements SkillService {
+  private readonly db: firebase.firestore.Firestore;
+  private readonly fileService: FileService;
   private skills: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>;
 
   constructor(db: firebase.firestore.Firestore, fileService: FileService) {
@@ -26,10 +31,6 @@ class SkillService {
     });
   }
 
-  /**
-   * Adds new skill
-   * @param form `SkillForm`
-   */
   async add(form: SkillForm) {
     const { name, description, iconFile } = form;
 
@@ -50,18 +51,11 @@ class SkillService {
     await this.skills.add(new Skill(name, description, downloadURL));
   }
 
-  /**
-   * Get all skills
-   */
   async getAll(): Promise<Skill[]> {
     const result = await this.skills.orderBy("name", "asc").limit(12).get();
     return result.docs.map((s) => s.data() as Skill);
   }
 
-  /**
-   * Get skill by its id
-   * @param id Skill ID from Firebase
-   */
   async get(id: string): Promise<Skill> {
     const result = await this.skills.doc(id).get();
     if (!result.exists) {
@@ -71,11 +65,6 @@ class SkillService {
     return result.data() as Skill;
   }
 
-  /**
-   * Update skill
-   * @param id Skill id
-   * @param form `SkillForm`
-   */
   async update(id: string, form: SkillForm) {
     const { name, description, iconFile } = form;
 
@@ -93,10 +82,6 @@ class SkillService {
     await this.skills.doc(id).set(skill);
   }
 
-  /**
-   * Deletes a skill
-   * @param id Skill ID from Firebase
-   */
   async delete(id: string) {
     const skill = await this.get(id);
 
@@ -107,4 +92,4 @@ class SkillService {
   }
 }
 
-export default SkillService;
+export default SkillServiceFrontendImpl;

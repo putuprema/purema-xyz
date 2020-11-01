@@ -1,17 +1,18 @@
 import Container from "components/container/Container";
 import { NextPage } from "next";
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { Input, SnackbarCloseReason, TextField, Typography } from "@material-ui/core";
 import { Button } from "components/Button";
 import styles from "components/admin/AdminPage.module.scss";
 import Snackbar from "components/Snackbar";
 import Head from "next/head";
-import { Services } from "services";
+import { ServiceContext } from "services/frontend";
 import adminPageStyles from "components/admin/AdminPage.module.scss";
 import { useRouter } from "next/router";
+import { getServerSidePropsWithAuth } from "helpers/getServerSidePropsWithAuth";
 
 const AddSkillPage: NextPage = () => {
-  const { skillService } = useContext(Services);
+  const { skillService } = useContext(ServiceContext);
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -102,5 +103,7 @@ const AddSkillPage: NextPage = () => {
     </>
   );
 };
+
+export const getServerSideProps = getServerSidePropsWithAuth();
 
 export default AddSkillPage;

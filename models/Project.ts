@@ -23,7 +23,7 @@ export interface ProjectForm {
   name: string;
   category: string;
   description: string;
-  thumbnailFile: File;
+  thumbnailFile?: File;
   demoUrl: string;
   githubUrl: string;
   youtubeEmbedUrl?: string;
