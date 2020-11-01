@@ -7,6 +7,7 @@ import ProjectsMobileLayout from "./mobile-layout";
 
 const myProjects: Project[] = [
   {
+    id: "",
     name: "Flappy Bird",
     category: "Artificial Intelligence",
     description:
@@ -16,6 +17,7 @@ const myProjects: Project[] = [
     demoUrl: "https://www.google.com",
   },
   {
+    id: "",
     name: "Flick Landing Page",
     category: "Website",
     description:
@@ -25,6 +27,7 @@ const myProjects: Project[] = [
     demoUrl: "https://www.detik.com",
   },
   {
+    id: "",
     name: "Pong",
     category: "Game",
     description:
@@ -34,6 +37,7 @@ const myProjects: Project[] = [
     demoUrl: "https://www.instagram.com",
   },
   {
+    id: "",
     name: "Tic Tac Toe",
     category: "Game",
     description:
@@ -43,6 +47,7 @@ const myProjects: Project[] = [
     demoUrl: "https://www.instagram.com",
   },
   {
+    id: "",
     name: "Binary Search Tree Simulator",
     category: "Game",
     description:

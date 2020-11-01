@@ -1,13 +1,18 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
 
+export enum Color {
+  PRIMARY = "#ffc400",
+  SECONDARY = "#ff4d4d",
+}
+
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#ffc400",
+      main: Color.PRIMARY,
       contrastText: "#ffffff",
     },
     secondary: {
-      main: "#ff4d4d",
+      main: Color.SECONDARY,
     },
     text: {
       primary: "#292929",
@@ -25,6 +30,13 @@ const theme = createMuiTheme({
     subtitle2: { fontSize: "1.25rem", marginBottom: "0.5rem" },
     body1: { fontSize: "1.5rem", lineHeight: 1.5, marginBottom: "0.5rem" },
     body2: { fontSize: "1.25rem", lineHeight: 1.6, marginBottom: "0.5rem" },
+  },
+  overrides: {
+    MuiTextField: {
+      root: {
+        marginBottom: "0.5rem",
+      },
+    },
   },
 });
 

@@ -5,11 +5,11 @@ interface ContainerProps {
   compact?: boolean;
 }
 
-type Props = ContainerProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+type Props = ContainerProps & React.HTMLProps<HTMLDivElement>;
 
-const Container = React.forwardRef<HTMLDivElement, Props>((props, ref) => (
-  <div ref={ref} {...props} className={`${styles[props.compact ? "root__compact" : "root"]} ${props.className}`}>
-    {props.children}
+const Container = React.forwardRef<HTMLDivElement, Props>(({ compact, className, children, ...props }, ref) => (
+  <div ref={ref} {...props} className={`${styles[compact ? "root__compact" : "root"]} ${className}`}>
+    {children}
   </div>
 ));
 
@@ -17,5 +17,7 @@ Container.defaultProps = {
   compact: false,
   className: "",
 };
+
+Container.displayName = "Container";
 
 export default Container;

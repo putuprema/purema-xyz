@@ -1,0 +1,57 @@
+@import "../../../styles/variables";
+
+.root {
+  border-radius: 25px;
+  box-shadow: $box-shadow-short;
+  padding: 1.5rem;
+  display: grid;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  .thumbnail-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .details {
+    .name {
+      margin-bottom: 0;
+    }
+
+    .category {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-container {
+      display: grid;
+      column-gap: 0.6rem;
+      row-gap: 0.5rem;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .root {
+    grid-template-columns: auto 1fr;
+
+    .thumbnail-container {
+      max-width: 300px;
+    }
+
+    .details {
+      .btn-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}

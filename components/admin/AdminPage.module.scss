@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+
+.root {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.input {
+  margin: 1.5rem 0;
+}
+
+.two-btn-container {
+  display: grid;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+@media (min-width: $breakpoint-md) {
+  .two-btn-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
