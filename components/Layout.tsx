@@ -14,10 +14,12 @@ const Layout: React.FunctionComponent<Props> = ({ children, title }) => (
       <title>{title}</title>
     </Head>
     <Navbar>
-      <NavItem>Home</NavItem>
-      <NavItem>Skill</NavItem>
-      <NavItem>Projects</NavItem>
-      <NavItem>Reach Out!</NavItem>
+      <NavItem href="home">Home</NavItem>
+      <NavItem href="skills">Skills</NavItem>
+      <NavItem href="projects" scrollOffset={-80}>
+        Projects
+      </NavItem>
+      {/* <NavItem>Reach Out!</NavItem> */}
     </Navbar>
     {children}
     <Footer />

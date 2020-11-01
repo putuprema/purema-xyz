@@ -2,4 +2,13 @@
 
 .nav-item {
   display: inline;
+  transition: transform 0.2s ease-in-out;
+
+  a {
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: scale(0.92);
+  }
 }

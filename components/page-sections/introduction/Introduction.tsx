@@ -32,7 +32,7 @@ const Introduction = () => {
   }, []);
 
   return (
-    <Section fullScreen centered>
+    <Section id="home" fullScreen centered>
       <Container className={`${styles["main-container"]}`}>
         <div className={`${styles["me-in-a-circle"]}`}>
           <Image src="/img/me-with-bg.jpg" width={500} height={500} alt="Putu Prema" />

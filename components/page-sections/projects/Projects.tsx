@@ -13,7 +13,7 @@ const Projects: React.FC<Props> = ({ projects }) => {
   const viewport = useContext(ViewportContext);
 
   return (
-    <Section fullScreen centered backgroundColor="white">
+    <Section id="projects" fullScreen centered backgroundColor="white">
       {viewport.isDesktop ? <ProjectsDesktopLayout projects={projects} /> : <ProjectsMobileLayout projects={projects} />}
     </Section>
   );

@@ -15,7 +15,7 @@ const Skills: React.FC<Props> = ({ skills }) => {
   const [selectedSkill, selectSkill] = useState<Skill>(skills[0]);
 
   return (
-    <Section fullScreen centered backgroundColor="white">
+    <Section id="skills" fullScreen centered backgroundColor="white">
       <Container>
         <SectionHeading>Skills</SectionHeading>
         <div className={`${styles["main-content"]}`}>

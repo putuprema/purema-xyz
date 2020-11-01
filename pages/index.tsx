@@ -18,7 +18,7 @@ const MainPage: NextPage<PageProps> = ({ skills, projects }) => (
     <Introduction />
     <Skills skills={skills} />
     <Projects projects={projects} />
-    <ContactMe />
+    {/* <ContactMe /> */}
   </Layout>
 );
 

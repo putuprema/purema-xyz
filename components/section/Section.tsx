@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Section.module.scss";
+import { Element } from "react-scroll";
 
 export interface SectionProps {
   /**
@@ -20,13 +21,15 @@ type Props = SectionProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDiv
 
 const Section: React.FC<Props> = ({ children, fullScreen, centered, backgroundColor, ...props }) => {
   return (
-    <section
-      {...props}
-      style={{ ...props.style, backgroundColor }}
-      className={`${styles[fullScreen ? "section__fullscreen" : "section"]} ${centered ? styles["content-centered"] : ""}`}
-    >
-      {children}
-    </section>
+    <Element name={props.id || ""}>
+      <section
+        {...props}
+        style={{ ...props.style, backgroundColor }}
+        className={`${styles[fullScreen ? "section__fullscreen" : "section"]} ${centered ? styles["content-centered"] : ""}`}
+      >
+        {children}
+      </section>
+    </Element>
   );
 };
 
