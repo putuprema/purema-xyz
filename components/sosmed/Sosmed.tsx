@@ -12,7 +12,7 @@ const Sosmed: React.FC<Props> = ({ color, size }) => (
     <a title="Follow me on Github" href="https://github.com/putuprema" target="_blank">
       <GitHub color="inherit" fontSize="inherit" />
     </a>
-    <a title="Let's connect on LinkedIn" href="https://linkedin.com/putuprema" target="_blank">
+    <a title="Let's connect on LinkedIn" href="https://linkedin.com/in/putuprema" target="_blank">
       <LinkedIn color="inherit" fontSize="inherit" />
     </a>
     <a title="Send me an email" href="mailto:iputupremaananda@gmail.com">
